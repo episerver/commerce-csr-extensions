@@ -1,0 +1,6 @@
+<Project>
+  <PropertyGroup>
+	<CmsVersion>12.4.0</CmsVersion>
+    <CommerceVersion>14.4.0-pre-023406</CommerceVersion>
+  </PropertyGroup>
+</Project>

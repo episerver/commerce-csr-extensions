@@ -1,0 +1,17 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+	<Import Project="..\build\DependencyVersions.props" />
+	<PropertyGroup>
+		<TargetFrameworks>net5.0;net6.0</TargetFrameworks>
+		<IsPackable>true</IsPackable>
+		<NuspecFile>CsrExtensions.nuspec</NuspecFile>
+		<NoWarn>1701;1702;1705;1591</NoWarn>
+		<AddRazorSupportForMvc>true</AddRazorSupportForMvc>
+		<NuspecFile>CsrExtensions.nuspec</NuspecFile>
+		<NuspecProperties>Configuration=$(Configuration);version=$(PackageVersion);cmsVersion=$(CmsVersion);cmsNextMajorVersion=$(CmsNextMajorVersion);commerceVersion=$(CommerceVersion);commerceNextMajorVersion=$(CommerceNextMajorVersion);</NuspecProperties>
+		<NuspecBasePath>$(ProjectDir)..\</NuspecBasePath>
+	</PropertyGroup>
+	<ItemGroup>
+		 <PackageReference Include="EPiServer.CMS.AspNetCore" Version="$(CmsVersion)" />
+		 <PackageReference Include="EPiServer.Commerce.UI.CustomerService" Version="$(CommerceVersion)" /> 
+	</ItemGroup>
+</Project>
