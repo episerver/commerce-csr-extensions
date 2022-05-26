@@ -1,4 +1,4 @@
-﻿# Customer Service Extensions Sample
+# Customer Service Extensions Sample
 
 ## What is this project about?
 This project is a sample for extended components which are used to extend the funtionalities in Optimizely's Customer Service (aka CSR).
@@ -37,12 +37,81 @@ CSR needs to know its extended components exist using ExtendedComponentOptions c
   - Cart = 1,
   - PurchaseOrder = 2,
   - Subscription = 4
-* IsProtectedModule: Determines the extended component is in protected module or not.
 
 ### Step 1: Config components' information
+1. Create a new class library project.
+2. Create an `InitializableModule` class for this library and use ServiceConfigurationContext to add components.
+```cs
+context.Services.Configure<ExtendedComponentOptions>(x =>
+    {
+        x.ExtendedComponents.AddRange(new[]
+        {
+            Name = "CsrExtensionCartPurchaseOrderSubscriptionTab3",
+            ScriptUrl = Paths.ToClientResource(GetType().Assembly, "clientResources/dist/CsrExtensionCartPurchaseOrderSubscriptionTab3/CsrExtensionCartPurchaseOrderSubscriptionTab3.js"),
+            Order = 3,
+            ComponentLocation = ComponentLocation.Tab,
+            OrderTypes = OrderTypes.Cart | OrderTypes.PurchaseOrder | OrderTypes.Subscription
+        });
+    });
+```
 
-There are 2 ways to config.
+### Step 2: Build React components
+1. Setup a React Application in the new class library project.
+2. In src folder, create a new folder, each folder will be corresponding to a component.
+3. Create a component file which will be built into a remote component.
+4. Create index file for for local development.
+```sh
+yarn dev:server --config-name config-{folder name of the component}
+```
+to start webpack-dev-server and develop the component. Example: yarn dev:server --config-name config-CsrExtensionCartTab2
+The localhost will run in port 9090.
+5. After finishing development, run
+```sh
+yarn build:release
+```
+to generate a commonJS file of the component.
+Other commands
+    
+```
+yarn build: debug => build in debug mode, mapping file will be generated for debugging.
+yarn build: watch => build in debug mode, watch changes and re-build each changes.
+```
+
+### Step 3: Add component's controller
+For more complex usage, a controller should be created.
+Create a new folder in the root folder of the project, the folder name of the component should be the same as the one's folder in src folder (not mandatory, but for easy management).
+
+### Step 4: Pack the library project to nuget package
+Run build.cmd to build the typescript and the solution.
+Run pack.cmd to create the nuget package.
+
+An alternative way is to refer the site to the class library project.
+
+### Step 5: Run the commerce site
+Run commerce site, and the component will be loaded at runtime.
+
+## Alternative
+Instead of creating extended components in a separate module, the alternative way is to add pre-built component JS file to the web app (for example: put the JS file in wwwroot folder)
+
+### Step 1: Config components' information
+There are 2 ways to config in the web app.
+
+* Using InitializableModule in the web app
+```cs
+context.Services.Configure<ExtendedComponentOptions>(x =>
+    {
+        x.ExtendedComponents.AddRange(new[]
+        {
+            Name = "CsrExtensionCartPurchaseOrderSubscriptionTab3",
+            ScriptUrl = "/js/CsrExtensionCartPurchaseOrderSubscriptionTab3/CsrExtensionCartPurchaseOrderSubscriptionTab3.js",
+            Order = 3,
+            ComponentLocation = ComponentLocation.Tab,
+            OrderTypes = OrderTypes.Cart | OrderTypes.PurchaseOrder | OrderTypes.Subscription
+        });
+    });
+```
 * Using appsettings.json
+```
 {
   ...
   "EPiServer": {
@@ -53,97 +122,28 @@ There are 2 ways to config.
         "ExtendedComponents": [
           {
             "Name": "CsrExtensionCartPurchaseOrderSubscriptionTab3",
-            "ScriptUrl": "EPiServer.Commerce.UI.CustomerService.Extensions/clientResources/dist/CsrExtensionCartPurchaseOrderSubscriptionTab3/CsrExtensionCartPurchaseOrderSubscriptionTab3.js",
+            "ScriptUrl": "/js/CsrExtensionCartPurchaseOrderSubscriptionTab3/CsrExtensionCartPurchaseOrderSubscriptionTab3.js",
             "Order": 2,
             "ComponentLocation": 2,
             "OrderTypes": 7,
-            "IsProtectedModule": true,
           }
         ]
       }
     },
     ...
 }
-
+```
 OrderTypes uses flag enum, if a component belongs to more than one type, use the combination. For example: OrderTypes = 7 means this component belongs to Cart, PurchaseOrder, and Subscription.
 
-* Using InitializableModule
-In ConfigureContainer of Initialization file, use ServiceConfigurationContext to add components.
-context.Services.Configure<ExtendedComponentOptions>(x =>
-    {
-        x.ExtendedComponents.AddRange(new[]
-        {
-            Name = "CsrExtensionCartPurchaseOrderSubscriptionTab3",
-            ScriptUrl = "EPiServer.Commerce.UI.CustomerService.Extensions/clientResources/dist/CsrExtensionCartPurchaseOrderSubscriptionTab3/CsrExtensionCartPurchaseOrderSubscriptionTab3.js",
-            Order = 2,
-            ComponentLocation = ComponentLocation.Tab,
-            OrderTypes = OrderTypes.Cart | OrderTypes.PurchaseOrder | OrderTypes.Subscription,
-            IsProtectedModule = true,
-        });
-    });
-
 ### Step 2: Build React components
-1. In src folder, create a new folder, each folder will be corresponding to a component.
-2. Create a component file which will be built into a remote component.
-3. Create index file for for local development.
-    ```sh
-    yarn dev:server --config-name config-{folder name of the component}
-    ```
-to start webpack-dev-server and develop the component. Example: yarn dev:server --config-name config-CsrExtensionCartTab2
-The localhost will run in port 9090.
-4. After finishing development, run
-    ```sh
-    yarn build:release
-    ```
-to generate a commonJS file of the component.
-5. Run commerce site, and the component will be loaded at runtime.
-
-    ```sh
-    yarn build: debug => build in debug mode, mapping file will be generated for debugging.
-    yarn build: watch => build in debug mode, watch changes and re-build each changes.
-    ```
-
-### Step 3: Add component's controller
-For more complex usage, a controller should be created.
-Create a new folder in the root folder of the project, the folder name of the component should be the same as the one's folder in src folder (not mandatory, but for easy management).
-
-## Alternative
-Instead of creating extended components in a separate module, the alternative way is to add pre-built component JS file to the web app (for example: put the JS file in wwwroot folder)
-### Step 1: Config components' information
-
-Using appsettings.json
-{
-  ...
-  "EPiServer": {
-    ...
-    "Commerce": {
-      ...
-      "ExtendedComponentOptions": {
-        "ExtendedComponents": [
-          {
-            "Name": "CsrExtensionCartTab4",
-            "ScriptUrl": "/js/CsrExtensionCartTab4/CsrExtensionCartTab4.js",
-            "Order": 0,
-            "ComponentLocation": 2,
-            "OrderTypes": 1,
-            "IsProtectedModule": false
-          }
-        ]
-      }
-    },
-    ...
-}
-
-Set IsProtectedModule is false.
-
-### Step 2: Build React components
-Create a client app to build extended components to commonJS files.
+1. Create a client app to build extended components to commonJS files.
+2. Copy these files to the commerce site (for example: wwwroot folder).
 
 ### Step 3: Add components' controller
-Add controller if necessary.
+Add controllers to the commerce site if necessary.
 
 ## Usage example
-CsrExtensionCartTab1 folder has a full demo version of an extended component.
+CartTab1 folder has a full demo version of an extended component.
 
 ## License
 Distributed under the MIT License.
