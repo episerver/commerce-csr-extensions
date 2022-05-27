@@ -1,9 +1,9 @@
 @echo off
 setlocal
 
-set CONFIGURATION=Debug
+set CONFIGURATION=Release
 
-if "%2"=="Release" (set CONFIGURATION=Release)
+if "%2"=="Debug" (set CONFIGURATION=Debug)
 
 powershell .\build\pack.ps1 %1 -configuration %CONFIGURATION%
 

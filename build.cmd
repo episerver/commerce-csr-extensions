@@ -11,4 +11,4 @@ if %errorlevel% NEQ 0 exit /B %errorlevel%
 if "%1"=="Debug" (CALL yarn --cwd CsrExtensions/clientResources build:debug) else (CALL yarn --cwd CsrExtensions/clientResources build:release)
 if %errorlevel% NEQ 0 exit /B %errorlevel%
 
-dotnet build CsrExtensions.csproj -c %Configuration%
+dotnet build CsrExtensions/CsrExtensions.csproj -c %Configuration%
