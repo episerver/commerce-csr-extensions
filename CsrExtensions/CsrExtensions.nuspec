@@ -12,17 +12,15 @@
     <summary>EPiServer Commerce Customer Extensions</summary>
     <description>
 		  This project is a sample for extended components which are used to extend the funtionalities in Optimizely's Customer Service (aka CSR).
-	  </description>
+	</description>
     <copyright>Copyright Optimizely $Year$</copyright>
     <tags>EPiServer Commerce UI CustomerService Extensions</tags>
     <dependencies>
       <group targetFramework="net5.0">
-		<dependency id="EPiServer.CMS.AspNetCore" version="($cmsVersion$,$cmsNextMajorVersion$)" />
-        <dependency id="EPiServer.Commerce.UI.CustomerService" version="($commerceVersion$,$commerceNextMajorVersion$)" />
+        <dependency id="EPiServer.Commerce" version="[$commerceVersion$,$commerceNextMajorVersion$)" />
       </group>
       <group targetFramework="net6.0">
-		<dependency id="EPiServer.CMS.AspNetCore" version="($cmsVersion$,$cmsNextMajorVersion$)" />
-        <dependency id="EPiServer.Commerce.UI.CustomerService" version="($commerceVersion$,$commerceNextMajorVersion$)" />
+        <dependency id="EPiServer.Commerce" version="[$commerceVersion$,$commerceNextMajorVersion$)" />
       </group>
     </dependencies>
     <contentFiles>

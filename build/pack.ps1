@@ -6,12 +6,6 @@ $ErrorActionPreference = "Stop"
 (Get-Item $PSScriptRoot).Parent.FullName | Push-Location
 
 [xml] $versionFile = Get-Content "./build/DependencyVersions.props"
-$cmsNode = $versionFile.SelectSingleNode("Project/PropertyGroup/CmsVersion")
-$cmsVersion = $cmsNode.InnerText
-$cmsParts = $cmsVersion.Split(".")
-$cmsMajor = [int]::Parse($cmsParts[0]) + 1
-$cmsNextMajorVersion = ($cmsMajor.ToString() + ".0.0")
-
 $commerceNode = $versionFile.SelectSingleNode("Project/PropertyGroup/CommerceVersion")
 $commerceVersion = $commerceNode.InnerText
 $commerceParts = $commerceVersion.Split(".")
@@ -40,4 +34,4 @@ $compress = @{
 }
 Compress-Archive @compress
 
-dotnet pack --no-restore --no-build -c $configuration /p:PackageVersion=$version /p:CmsVersion=$cmsVersion /p:CmsNextMajorVersion=$cmsNextMajorVersion /p:CommerceVersion=$commerceVersion /p:CommerceNextMajorVersion=$commerceNextMajorVersion CsrExtensions.sln
+dotnet pack --no-restore --no-build -c $configuration /p:PackageVersion=$version /p:CommerceVersion=$commerceVersion /p:CommerceNextMajorVersion=$commerceNextMajorVersion CsrExtensions.sln

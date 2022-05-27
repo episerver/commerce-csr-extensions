@@ -20,9 +20,9 @@ namespace CsrExtensions
             context.Services.Configure<ProtectedModuleOptions>(
                 pm =>
                 {
-                    if (!pm.Items.Any(i => i.Name.Equals("EPiServer.Commerce.UI.CustomerService.Extensions", System.StringComparison.OrdinalIgnoreCase)))
+                    if (!pm.Items.Any(i => i.Name.Equals("CsrExtensions", System.StringComparison.OrdinalIgnoreCase)))
                     {
-                        pm.Items.Add(new ModuleDetails() { Name = "EPiServer.Commerce.UI.CustomerService.Extensions" });
+                        pm.Items.Add(new ModuleDetails() { Name = "CsrExtensions" });
                     }
                 });
 
@@ -35,48 +35,48 @@ namespace CsrExtensions
                     new ExtendedComponent
                     {
                         ComponentLocation = ComponentLocation.Tab,
-                        Name = "CsrExtensionCartTab1",
-                        ScriptUrl = Paths.ToClientResource(GetType().Assembly, "clientResources/dist/CsrExtensionCartTab1/CsrExtensionCartTab1.js"),
+                        Name = "CartTab1",
+                        ScriptUrl = Paths.ToClientResource(GetType().Assembly, "clientResources/dist/CartTab1/CartTab1.js"),
                         Order = 1,
                         OrderTypes = OrderTypes.Cart,
                     },
                     new ExtendedComponent
                     {
                         ComponentLocation = ComponentLocation.Tab,
-                        Name = "CsrExtensionCartTab2",
-                        ScriptUrl = Paths.ToClientResource(GetType().Assembly, "clientResources/dist/CsrExtensionCartTab2/CsrExtensionCartTab2.js"),
+                        Name = "CartTab2",
+                        ScriptUrl = Paths.ToClientResource(GetType().Assembly, "clientResources/dist/CartTab2/CartTab2.js"),
                         Order = 2,
                         OrderTypes = OrderTypes.Cart,
                     },
                     new ExtendedComponent
                     {
                         ComponentLocation = ComponentLocation.Tab,
-                        Name = "CsrExtensionCartPurchaseOrderSubscriptionTab3",
-                        ScriptUrl = Paths.ToClientResource(GetType().Assembly, "clientResources/dist/CsrExtensionCartPurchaseOrderSubscriptionTab3/CsrExtensionCartPurchaseOrderSubscriptionTab3.js"),
+                        Name = "CartOrderSubscriptionTab3",
+                        ScriptUrl = Paths.ToClientResource(GetType().Assembly, "clientResources/dist/CartOrderSubscriptionTab3/CartOrderSubscriptionTab3.js"),
                         Order = 3,
                         OrderTypes = OrderTypes.Cart | OrderTypes.PurchaseOrder | OrderTypes.Subscription,
                     },
                     new ExtendedComponent
                     {
                         ComponentLocation = ComponentLocation.Header,
-                        Name = "CsrExtensionCartHeader1",
-                        ScriptUrl = Paths.ToClientResource(GetType().Assembly, "clientResources/dist/CsrExtensionCartHeader1/CsrExtensionCartHeader1.js"),
+                        Name = "CartHeader1",
+                        ScriptUrl = Paths.ToClientResource(GetType().Assembly, "clientResources/dist/CartHeader1/CartHeader1.js"),
                         Order = 1,
                         OrderTypes = OrderTypes.Cart,
                     },
                     new ExtendedComponent
                     {
                         ComponentLocation = ComponentLocation.Header,
-                        Name = "CsrExtensionCartHeader2",
-                        ScriptUrl = Paths.ToClientResource(GetType().Assembly, "clientResources/dist/CsrExtensionCartHeader2/CsrExtensionCartHeader2.js"),
+                        Name = "CartHeader2",
+                        ScriptUrl = Paths.ToClientResource(GetType().Assembly, "clientResources/dist/CartHeader2/CartHeader2.js"),
                         Order = 2,
                         OrderTypes = OrderTypes.Cart,
                     },
                     new ExtendedComponent
                     {
                         ComponentLocation = ComponentLocation.Footer,
-                        Name = "CsrExtensionCartFooter",
-                        ScriptUrl =  Paths.ToClientResource(GetType().Assembly, "clientResources/dist/CsrExtensionCartFooter/CsrExtensionCartFooter.js"),
+                        Name = "CartFooter",
+                        ScriptUrl =  Paths.ToClientResource(GetType().Assembly, "clientResources/dist/CartFooter/CartFooter.js"),
                         Order = 1,
                         OrderTypes = OrderTypes.Cart,
                     }
