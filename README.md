@@ -46,8 +46,8 @@ context.Services.Configure<ExtendedComponentOptions>(x =>
     {
         x.ExtendedComponents.AddRange(new[]
         {
-            Name = "CsrExtensionCartPurchaseOrderSubscriptionTab3",
-            ScriptUrl = Paths.ToClientResource(GetType().Assembly, "clientResources/dist/CsrExtensionCartPurchaseOrderSubscriptionTab3/CsrExtensionCartPurchaseOrderSubscriptionTab3.js"),
+            Name = "CartOrderSubscriptionTab3",
+            ScriptUrl = Paths.ToClientResource(GetType().Assembly, "clientResources/dist/CartOrderSubscriptionTab3/CartOrderSubscriptionTab3.js"),
             Order = 3,
             ComponentLocation = ComponentLocation.Tab,
             OrderTypes = OrderTypes.Cart | OrderTypes.PurchaseOrder | OrderTypes.Subscription
@@ -102,8 +102,8 @@ context.Services.Configure<ExtendedComponentOptions>(x =>
     {
         x.ExtendedComponents.AddRange(new[]
         {
-            Name = "CsrExtensionCartPurchaseOrderSubscriptionTab3",
-            ScriptUrl = "/js/CsrExtensionCartPurchaseOrderSubscriptionTab3/CsrExtensionCartPurchaseOrderSubscriptionTab3.js",
+            Name = "CartOrderSubscriptionTab3",
+            ScriptUrl = "/js/CartOrderSubscriptionTab3/CartOrderSubscriptionTab3.js",
             Order = 3,
             ComponentLocation = ComponentLocation.Tab,
             OrderTypes = OrderTypes.Cart | OrderTypes.PurchaseOrder | OrderTypes.Subscription
@@ -121,8 +121,8 @@ context.Services.Configure<ExtendedComponentOptions>(x =>
       "ExtendedComponentOptions": {
         "ExtendedComponents": [
           {
-            "Name": "CsrExtensionCartPurchaseOrderSubscriptionTab3",
-            "ScriptUrl": "/js/CsrExtensionCartPurchaseOrderSubscriptionTab3/CsrExtensionCartPurchaseOrderSubscriptionTab3.js",
+            "Name": "CartOrderSubscriptionTab3",
+            "ScriptUrl": "/js/CartOrderSubscriptionTab3/CartOrderSubscriptionTab3.js",
             "Order": 2,
             "ComponentLocation": 2,
             "OrderTypes": 7,
