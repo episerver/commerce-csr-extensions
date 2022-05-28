@@ -1,5 +1,9 @@
 .vs/
 node_modules/
+dist/
+*.log
 obj/
 bin/
 zipoutput/
+.npmrc
+

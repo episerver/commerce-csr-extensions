@@ -14,11 +14,11 @@ afterAll(() => server.close());
 describe("CartTab1 tests", () => {
     beforeEach(async () => {
         render(<CartTab1 groupOrderId={1} />);
-        await screen.findByText("CsrExtensionCartTab1");
+        await screen.findByText("CartTab1");
     });
 
     test("Should render correct title", async () => {
-        expect(screen.getByText("CsrExtensionCartTab1")).toBeInTheDocument();
+        expect(screen.getByText("CartTab1")).toBeInTheDocument();
     });
 
     test("Should render correct button", async () => {
