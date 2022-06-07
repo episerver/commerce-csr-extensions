@@ -20,9 +20,9 @@ In each order type, there are 3 locations which have the existing placeholder, t
 * Tab
 
 These extended components will be pre-built from ReactJS to CommonJS.
-After this extension package is installed, the Placeholder in CSR UI reads all necessary information of each component such as order type, location,
+After this extension package is installed, placeholders in CSR UI reads all necessary information of each component such as order type, location,
 and the URL where the CommomJS code of this component is located.
-When the CSR applicaition is running, it uses the URL to get a CommonJS file of a certain component and load it to the view at runtime.
+When the CSR application is running, it uses the URL to get a CommonJS file of a certain component and load it to the view at runtime.
 
 ## Getting Started
 CSR needs to know its extended components exist using ExtendedComponentOptions class. This class contains all information that CSR needs to work with.
