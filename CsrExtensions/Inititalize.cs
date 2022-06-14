@@ -79,6 +79,14 @@ namespace CsrExtensions
                         ScriptUrl =  Paths.ToClientResource(GetType().Assembly, "clientResources/dist/CartFooter/CartFooter.js"),
                         Order = 1,
                         OrderTypes = OrderTypes.Cart,
+                    },
+                    new ExtendedComponent
+                    {
+                        ComponentLocation = ComponentLocation.Header,
+                        Name = "Weather Forecast",
+                        ScriptUrl =  Paths.ToClientResource(GetType().Assembly, "clientResources/dist/WeatherComponent/WeatherComponent.js"),
+                        Order = 10,
+                        OrderTypes = OrderTypes.Cart | OrderTypes.PurchaseOrder,
                     }
                 });
             });
