@@ -6,7 +6,7 @@ This project is a sample for extended components which are used to extend the fu
 ## Prerequisites
 * [NodeJS equal or greater than v16.10.0](https://nodejs.org/download/release/v16.10.0/)
 * [yarn](https://yarnpkg.com)
-* [Optimzely Commerce equal or greater than 14](https://world.optimizely.com/products/#b2b)
+* [Optimzely Commerce B2C equal or greater than 14](https://world.optimizely.com/products/#b2c)
 
 ## How it works
 The CSR extended components will be added as extra views in CSR UI. There are 3 order types in CSR UI for these components to be added.
